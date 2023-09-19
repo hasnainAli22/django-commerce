@@ -1,0 +1,6 @@
+/* Custom CSS for margin-bottom on nav-items when the navbar collapses */
+@media (max-width: 768px) {
+    .navbar-collapse.collapse ul.navbar-nav.reg-btn li.nav-item {
+        margin-bottom: 10px; /* Adjust the margin as needed */
+    }
+}

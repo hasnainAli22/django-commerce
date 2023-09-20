@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#Media 
+#Setting Up Media 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, )
 
@@ -130,7 +130,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.CustomUser' # Instead of using the default user model the project will use this as user model
+# Instead of using the default user model the project will use this as user model
+AUTH_USER_MODEL = 'accounts.CustomUser'
+# Specifying the Staticfiles Directories
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core', 'static')
 ]
+
+# Setting the Redirect URL after Login
+
+LOGIN_REDIRECT_URL = '/'  # Set your desired redirect URL

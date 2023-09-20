@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
@@ -36,3 +36,12 @@ class CustomUserForm(UserCreationForm):
             "password1":None,
             "password2":None,
             }
+
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control","placeholder":"Username"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control","placeholder":"Password"}))
+    # Override error_css_class to include Bootstrap's 'is-invalid' class
+    class Meta:
+        model = User
+        fields = ["username","password"]

@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 
 #Local Imports
-from accounts.forms import CustomUserForm, CustomLoginForm
+from accounts.forms import CustomUserForm, CustomLoginForm,CustomPasswordChangeForm, CustomPasswordResetForm, CustomSetPasswordForm
 
 User = get_user_model()
 
@@ -36,9 +36,34 @@ class LogoutView(auth_views.LogoutView):
 
 class PasswordChangeView(auth_views.PasswordChangeView):
     template_name = 'registration/password_change.html'
+    form_class = CustomPasswordChangeForm
     
     
 class PasswordChangeDoneView(auth_views.PasswordChangeDoneView):
     template_name = 'registration/password_change_done.html'
+
+class PasswordResetView(auth_views.PasswordResetView):
+    template_name = 'registration/password_reset.html'
+    form_class = CustomPasswordResetForm
+    email_template_name = 'registration/password_reset_email.html'
+    subject_template_name = 'registration/password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    # success_url = reverse_lazy('home')
+
+
+class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    template_name = 'registration/password-reset-confirm.html'
+    form_class = CustomSetPasswordForm
+
+
+class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = 'registration/password-reset-complete.html'
+    
+
+class PasswordResetDoneView(auth_views.PasswordResetDoneView):
+    template_name = 'registration/password-reset-done.html'
 
     

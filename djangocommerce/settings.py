@@ -140,3 +140,13 @@ STATICFILES_DIRS = [
 # Setting the Redirect URL after Login
 
 LOGIN_REDIRECT_URL = '/'  # Set your desired redirect URL
+# LOGOUT_REDIRECT_URL = '/' # Set the logout redirect to the "/" home
+
+# Setting up the SMTP( Simple Mail Transfer Protocol)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'our.hasnain22@gmail.com'
+EMAIL_HOST_PASSWORD = 'olbe blfy mjfj fnle'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

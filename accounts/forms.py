@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
@@ -45,3 +45,20 @@ class CustomLoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ["username","password"]
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    pass
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.CharField(widget=forms.EmailInput(attrs={"class":"form-control","placeholder":"Enter your email"}))
+    class Meta:
+        model = User
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(widget=forms.EmailInput(attrs={"class":"form-control","placeholder":"Enter new password"}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control","placeholder":"Confirm Password"}))
+    class Meta:
+        model = User

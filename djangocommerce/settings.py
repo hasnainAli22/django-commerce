@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local Apps
     'accounts.apps.AccountsConfig',
-    'core.apps.CoreConfig'
+    'core.apps.CoreConfig',
+    'store.apps.StoreConfig'
 ]
 
 MIDDLEWARE = [
@@ -119,11 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'static' # where to find the static files after deployment
+# Specifying the Staticfiles Directories (Usually Other than the apps specific static)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core', 'static'),
+    BASE_DIR / 'static/'
+]
 
 #Setting Up Media 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, )
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -132,10 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Instead of using the default user model the project will use this as user model
 AUTH_USER_MODEL = 'accounts.CustomUser'
-# Specifying the Staticfiles Directories
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core', 'static')
-]
 
 # Setting the Redirect URL after Login
 

@@ -16,7 +16,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">DjCommerce</a>
+          <a class="navbar-brand" href="{% url 'store:home' %}">DjCommerce</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,22 +26,33 @@
                     
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'store:home' %}">All</a></li>
+                      {% for category in categories %}
+                        <li><a class="dropdown-item" href="{% url 'store:category_list' category.slug%}">{{category.name | capfirst}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
             </ul>
              <!-- Sign In and Log In buttons within the navigation menu -->
              <ul class="navbar-nav ms-auto reg-btn">
                 {% if user.is_authenticated %}
                     <!-- If the user is authenticated -->
-                    <li class="nav-item"><a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a></li>
+                    <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Logout</a></li>
                     <li>
                         Welcome {{user.username}}
                     </li>
                 {% else %}
                     <!-- If the user is not authenticated -->
                     <li class="nav-item">
-                        <a class="btn btn-outline-success me-2" href="{% url 'signup' %}">Signup</a>
+                        <a class="btn btn-outline-success me-2" href="{% url 'accounts:signup' %}">Signup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+                        <a class="btn btn-outline-primary" href="{% url 'accounts:login' %}">Login</a>
                     </li>
                 {% endif%}
             </ul>

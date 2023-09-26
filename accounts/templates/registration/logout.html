@@ -5,12 +5,12 @@
     <div class="alert alert-success" role="alert">
         Logged Out Successfully!
     </div>
-    Click Here to Login <a class="link-primary" href="{% url 'login' %}">Login!</a>
+    Click Here to Login <a class="link-primary" href="{% url 'accounts:login' %}">Login!</a>
 
     <script>
         // Delay for a few seconds (e.g., 3 seconds) before redirecting
         setTimeout(function() {
-            window.location.href = "{% url 'home' %}";
+            window.location.href = "{% url 'store:home' %}";
         }, 3000); // 3000 milliseconds = 3 seconds
     </script>
 {% endblock  %}

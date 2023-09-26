@@ -3,8 +3,8 @@ from django.views.generic.base import TemplateView
 from accounts.views import *
 
 # Create the patterns
+app_name = 'accounts'
 urlpatterns = [
-    path('',TemplateView.as_view(template_name='core/index.html'),name='home'),
     path('signup/',UserRegistrationView.as_view(), name='signup'),
     path('login/',LoginView.as_view(),name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
